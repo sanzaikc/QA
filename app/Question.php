@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
@@ -10,11 +11,11 @@ class Question extends Model
 
     public function user()
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(User::class);
     }
 
     public function setTitleAttribute($value){
         $this->attributes['title'] = $value;
-        $this->attributes['slug'] = str_slug($value);
+        $this->attributes['slug'] = Str::of($value)->slug('-');
     }
 }

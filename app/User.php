@@ -38,6 +38,6 @@ class User extends Authenticatable
     ];
 
     public function questions(){
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Question::class);
     }
 }
