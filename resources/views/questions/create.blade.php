@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex">
                         <h2>Ask Your Question</h2>
-                        <a href="{{ route('questions.index') }}" class="btn btn-outline-primary ml-auto">Back to all questions</a>
+                        <a href="{{ route('questions.index') }}" class="btn btn-outline-primary rounded-pill ml-auto">Back to all questions</a>
                     </div>
                 </div>
 

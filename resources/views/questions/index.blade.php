@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex align-item-center">
                         <h2>All Questions</h2>
-                        <a href="{{ route('questions.create') }}" class="ml-auto btn btn-outline-secondary">Ask your question!</a>
+                        <a href="{{ route('questions.create') }}" class="ml-auto btn btn-outline-secondary rounded-pill">Ask your question!</a>
                     </div>
                 </div>
 
@@ -25,31 +25,32 @@
                                     <strong> {{ $question->answers }} </strong> {{ Str::plural('answer', $question->answers) }}
                                 </div>
                                 <div class="view">
-                                     {{ $question->views ." ". Str::plural('view', $question->views) }}
+                                    {{ $question->views ." ". Str::plural('view', $question->views) }}
                                 </div>
                             </div>
 
                             <div class="media-body">
-                                    <div class="d-flex">
-                                        <h3 class="mt-0"> <a href="{{ $question->url}}" class="bg-light">{{ $question->title }}</a> </h3>
-                                        @can('update', $question)
-                                            <a href=" {{ route('questions.edit', $question) }} " class="btn btn-outline-info ml-auto"> Edit </a>
-                                        @endcan
-                                        @can('update', $question) 
-                                        <form action=" {{ route('questions.destroy', $question) }} " method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" class="btn btn-outline-danger ml-1" onclick="confirm('Are you sure you want to delete?')" value="Delete">
-                                        </form>
-                                        @endcan
-                                    </div>
-                                    <p class="lead">
-                                        Asked by <a href="{{ $question->user->url}}" class="text-info"> {{$question->user->name}} </a>
-                                        <small class="text-muted"> {{ $question->created_date }} </small>
-                                    </p>
-                                    {{  Str::limit($question->body , 250) }}
+                                <div class="d-flex">
+                                    <h3 class="mt-0"> <a href="{{ $question->url}}" class="bg-light">{{ $question->title }}</a> </h3>
 
+                                    @can('update', $question)
+                                        <a href=" {{ route('questions.edit', $question) }} " class="btn btn-outline-info ml-auto"> Edit </a>
+                                    @endcan
 
+                                    @can('update', $question) 
+                                    <form action=" {{ route('questions.destroy', $question) }} " method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="btn btn-outline-danger ml-1" onclick="confirm('Are you sure you want to delete?')" value="Delete">
+                                    </form>
+                                    @endcan
+
+                                </div>
+                                <p class="lead">
+                                    Asked by: <a href="{{ $question->user->url}}" class="text-info"> {{$question->user->name}} </a>
+                                    <small class="text-muted"> {{ $question->created_date }} </small>
+                                </p>
+                                {{  Str::limit($question->body , 250) }}
                             </div>
 
                         </div>

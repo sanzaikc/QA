@@ -10886,6 +10886,8 @@ a.text-dark:focus {
   margin-right: 30px;
   font-size: 10px;
   text-align: center;
+  padding-right: 1rem;
+  border-right: 1px solid lightgrey;
 }
 
 .counters strong {
@@ -10894,28 +10896,30 @@ a.text-dark:focus {
 }
 
 .counters .vote,
-.counters .answer {
+.counters .status {
   width: 60px;
   height: 50px;
   margin-bottom: 1rem;
+  background-color: lightgray;
+  border-radius: 10px;
 }
 
 .counters .status.unanswered {
-  border: none;
+  background-color: lightgray;
+  border-radius: 10px;
 }
 
 .counters .status.answered {
-  border: 1px solid #38c172;
+  background-color: lightgreen;
   border-radius: 10px;
-  color: #38c172;
 }
 
-.counters .status.answered-accepted {
+.counters .status.answer-accepted {
   background-color: #38c172;
   color: #ffff;
 }
 
-.counters .status .view {
-  margin-top: 20px;
+.counters .view {
+  margin-top: 10px;
 }
 

@@ -16,5 +16,5 @@
     @enderror
 </div>
 <div class="form-group">
-    <input type="submit" class="btn btn-outline-success" value="{{ $btnText }}">
+    <input type="submit" class="btn btn-outline-success rounded-pill" value="{{ $btnText }}">
 </div>
