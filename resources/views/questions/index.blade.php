@@ -32,12 +32,19 @@
                             <div class="media-body">
                                     <div class="d-flex">
                                         <h3 class="mt-0"> <a href="{{ $question->url}}" class="bg-light">{{ $question->title }}</a> </h3>
-                                        <a href=" {{ route('questions.edit', $question) }} " class="btn btn-outline-info ml-auto"> Edit </a>
-                                        <form action=" {{ route('questions.destroy', $question) }} " method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" class="btn btn-outline-danger ml-1" onclick="confirm('Are you sure you want to delete?')" value="Delete">
-                                        </form>
+
+                                        @can('updateQuestion', $question)
+                                            <a href=" {{ route('questions.edit', $question) }} " class="btn btn-outline-info ml-auto"> Edit </a>
+                                        @endcan
+
+                                        @can('deleteQuestion', $question)
+                                            <form action=" {{ route('questions.destroy', $question) }} " method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit" class="btn btn-outline-danger ml-1" onclick="confirm('Are you sure you want to delete?')" value="Delete">
+                                            </form>
+                                        @endcan
+
                                     </div>
                                     <p class="lead">
                                         Asked by <a href="{{ $question->user->url}}" class="text-info"> {{$question->user->name}} </a>
