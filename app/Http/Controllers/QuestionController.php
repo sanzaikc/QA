@@ -8,8 +8,8 @@ use App\Http\Requests\AskQuestionRequest;
 
 class QuestionController extends Controller
 {
-    public function _construct(){
-        
+    public function __construct(){
+        $this->middleware('auth', ['except'=> ['index', 'show']]);
     }
     /**
      * Display a listing of the resource.
@@ -66,8 +66,12 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question)
-    {
-        return view ('questions.edit',compact('question'));
+    {   
+            if(auth()->user()->cant('update', $question)){
+                abort(401);
+            }else{
+                return view ('questions.edit',compact('question'));
+            }
     }
 
     /**
@@ -92,8 +96,13 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        $question->delete();
 
-        return redirect()->route('questions.index')->with('success', 'Your question is successfully  deleted!');
+        if(auth()->user()->cant('delete', $question)){
+            abort(401);
+        }else{
+            $question->delete();
+            return redirect()->route('questions.index')->with('success', 'Your question is successfully  deleted!');
+        }
+
     }
 }
