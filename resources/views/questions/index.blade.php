@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex">
+                    <div class="d-flex align-item-center">
                         <h2>All Questions</h2>
                         <button  class="ml-auto btn btn-outline-secondary btn-sm"><a href="{{ route('questions.create') }}">Ask your question!</a></button>
                     </div>
@@ -28,14 +28,21 @@
                                      {{ $question->views ." ". Str::plural('view', $question->views) }}
                                 </div>
                             </div>
+
                             <div class="media-body">
-                            <h3 class="mt-0"> <a href="{{ $question->url}}">{{ $question->title }}</a> </h3>
-                            <p class="lead">
-                            Asked by <a href="{{ $question->user->url}}"> {{$question->user->name}} </a>
-                            <small class="text-muted"> {{ $question->created_date }} </small>
-                            </p>
-                               {{  Str::limit($question->body , 250) }}
+                                    <div class="d-flex">
+                                        <h3 class="mt-0"> <a href="{{ $question->url}}">{{ $question->title }}</a> </h3>
+                                        <a href=" {{ route('questions.edit', $question) }} " class="btn btn-outline-info ml-auto"> Edit </a>
+                                    </div>
+                                    <p class="lead">
+                                        Asked by <a href="{{ $question->user->url}}"> {{$question->user->name}} </a>
+                                        <small class="text-muted"> {{ $question->created_date }} </small>
+                                    </p>
+                                    {{  Str::limit($question->body , 250) }}
+
+
                             </div>
+
                         </div>
                         <hr>
                     @endforeach

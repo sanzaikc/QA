@@ -8,6 +8,9 @@ use App\Http\Requests\AskQuestionRequest;
 
 class QuestionController extends Controller
 {
+    public function _construct(){
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +43,7 @@ class QuestionController extends Controller
     {
         $request->user()->questions()->create($request->all());
 
-        return  redirect()->route('questions.index')->with('success', "Successfully submitted!");
+        return  redirect()->route('questions.index')->with('success', "Question successfully submitted!");
     }
 
     /**
@@ -62,7 +65,7 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view ('questions.edit',compact('question'));
     }
 
     /**
@@ -72,9 +75,11 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->only('title','body'));
+
+        return redirect()->route('questions.index')->with('success', 'Successfully updated!');
     }
 
     /**
