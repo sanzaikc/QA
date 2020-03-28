@@ -43,7 +43,7 @@ class QuestionController extends Controller
     {
         $request->user()->questions()->create($request->all());
 
-        return  redirect()->route('questions.index')->with('success', "Question successfully submitted!");
+        return  redirect()->route('questions.index')->with('success', "Your question is successfully submitted!");
     }
 
     /**
@@ -90,6 +90,8 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+
+        return redirect()->route('questions.index')->with('success', 'Your question is successfully  deleted!');
     }
 }
