@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex align-item-center">
                         <h2>All Questions</h2>
-                        <button  class="ml-auto btn btn-outline-secondary btn-sm"><a href="{{ route('questions.create') }}">Ask your question!</a></button>
+                        <a href="{{ route('questions.create') }}" class="ml-auto btn btn-outline-secondary">Ask your question!</a>
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
 
                             <div class="media-body">
                                     <div class="d-flex">
-                                        <h3 class="mt-0"> <a href="{{ $question->url}}">{{ $question->title }}</a> </h3>
+                                        <h3 class="mt-0"> <a href="{{ $question->url}}" class="bg-light">{{ $question->title }}</a> </h3>
                                         <a href=" {{ route('questions.edit', $question) }} " class="btn btn-outline-info ml-auto"> Edit </a>
                                         <form action=" {{ route('questions.destroy', $question) }} " method="post">
                                             @csrf
@@ -40,7 +40,7 @@
                                         </form>
                                     </div>
                                     <p class="lead">
-                                        Asked by <a href="{{ $question->user->url}}"> {{$question->user->name}} </a>
+                                        Asked by <a href="{{ $question->user->url}}" class="text-info"> {{$question->user->name}} </a>
                                         <small class="text-muted"> {{ $question->created_date }} </small>
                                     </p>
                                     {{  Str::limit($question->body , 250) }}

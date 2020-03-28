@@ -5,10 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> {{ $question->title }} </div>
+                <div class="card-header">
+                    <div class="d-flex align-item-center">
+                        <h2 class="">{{ $question->title }}</h2>
+                        <a href="{{ route('questions.index') }}" class="btn btn-outline-secondary ml-auto">Back to all questions</a>
+                    </div>
+                </div>
 
                 <div class="card-body">
-                   {{ $question->body }}
+                    {!! $question->html_body !!}
                 </div>
 
             </div>
