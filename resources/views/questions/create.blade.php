@@ -13,22 +13,22 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action=" {{ route('questions.store') }} " method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="text-muted" id="title"><h5>Title of the question</h5></label>
-                            <input type="text" class="form-control" name="title" placeholder="Enter the title of your question">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Enter the title of your question" value=" {{ old('title') }} ">
 
                             @error('title')
-                                <p class="invalid-feedback"> {{ $error->first('title') }} </p>
+                                <p class="invalid-feedback"> {{ $message }} </p>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="text-muted" id="body"><h5>Your Question</h5></label>
-                            <textarea name="body"  class="form-control"  cols="30" rows="8" placeholder="Elaborate your question"></textarea>
+                            <textarea name="body"  class="form-control @error('title') is-invalid @enderror"  cols="30" rows="8" placeholder="Elaborate your question"> {{ old('body') }} </textarea>
 
                             @error('body')
-                                <p class="invalid-feedback"> {{ $error->first('body') }} </p>
+                                <p class="invalid-feedback"> {{ $errors->first('body') }} </p>
                             @enderror
                         </div>
                         <div class="form-group">
