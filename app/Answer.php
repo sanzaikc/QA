@@ -15,4 +15,11 @@ class Answer extends Model
     public function question(){
         return $this->belongsTo(Question::class);
     }
+
+    public static function booted(){
+        static::created(function($answer){
+            $answer->question->increment('answers_count');
+            $answer->question->save();
+        });
+    }
 }

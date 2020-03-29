@@ -7,6 +7,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Answer::class, function (Faker $faker) {
     return [
-        'body' => $faker->sentences(rand(3,7))
+        'body' => $faker->paragraphs(rand(3,7),true),
+        'user_id' => App\User::pluck('id')->random(),
+        'question_id' => App\Question::pluck('id')->random(),
+        'votes_count' => rand(3,8),  
     ];
 });
