@@ -45,6 +45,10 @@ class User extends Authenticatable
         return $this->id;
     }
 
+    public function getAvatarAttribute(){
+        return "https://i.pravatar.cc/30?u=" . $this->email ;
+    }
+
     public function answers(){
         return $this->hasMany(Answer::class);
     }

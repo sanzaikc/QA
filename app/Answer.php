@@ -16,6 +16,18 @@ class Answer extends Model
         return $this->belongsTo(Question::class);
     }
 
+    public function getUrlAttribute(){
+        return $this->id;
+    }
+    
+    public function getHtmlBodyAttribute(){
+        return \Parsedown::instance()->text($this->body);
+    }
+
+    public function getCreatedDateAttribute(){
+        return $this->created_at->diffForHumans();
+    }
+
     public static function booted(){
         static::created(function($answer){
             $answer->question->increment('answers_count');
