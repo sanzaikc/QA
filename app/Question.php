@@ -29,7 +29,7 @@ class Question extends Model
 
     public function getStatusAttribute(){
         if($this->answers_count > 0){
-            if($this->best_answer_id){
+            if($this->bestAnswerId){
                 return "answer-accepted";
             }
             return "answered";

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Question;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,9 +38,14 @@ class AnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Question $question, Request $request)
+    { 
+        $question->answers()->create($request->validate([
+            'body' => 'required'
+            ]) + ['user_id' => auth()->id()]
+        );
+
+        return back()->with('success', 'Your answer is successfully submitted');
     }
 
     /**
